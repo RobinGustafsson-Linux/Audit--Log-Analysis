@@ -14,13 +14,20 @@ $logFiles = Get-ChildItem -Filter "*.log" -Recurse
 $backupFiles = Get-ChildItem -Filter "*.bak" -Recurse
 
 
+# Del A: Inventering
+$recentFiles = $allFiles | Where-Object { $_.LastWriteTime -gt $weekAgo } | Sort-Object LastWriteTime -Descending
 
+# Group after file type
+$fileGroups = $allFiles | Group-Object -Property Extension
 
+# Fetch large files
+$largestLogs = $logFiles | Sort-Object Length -Descending | Select-Object -First 5
 
-
-
-
-
+# Del B: Säkerhetsgranskning
+# Search for IP addresses
+$ipMatches = Get-ChildItem -Filter "*.conf" -Recurse |
+Select-String -Pattern "\d{1,3}(\.\d{1,3}){3}" |
+ForEach-Object { $_.Matches.Value } | Sort-Object -Unique
 
 
 
