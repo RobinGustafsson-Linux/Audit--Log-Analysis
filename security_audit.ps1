@@ -29,7 +29,10 @@ $ipMatches = Get-ChildItem -Filter "*.conf" -Recurse |
 Select-String -Pattern "\d{1,3}(\.\d{1,3}){3}" |
 ForEach-Object { $_.Matches.Value } | Sort-Object -Unique
 
-
+# Look after security problems in logs
+$logFindings = Get-ChildItem -Filter "*.log" -Recurse |
+Select-String -Pattern "ERROR|FAILED|DENIED" |
+Group-Object Path
 
 
 
