@@ -56,7 +56,6 @@ $report = @()
 $report += "================================================================================"
 $report += "                    SÄKERHETSGRANSKNINGSRAPPORT - TechCorp AB"
 $report += "================================================================================"
-
 $report += "Genererad: $now"
 $report += "Granskad sökväg: $auditPath"
 $report += ""
@@ -72,14 +71,32 @@ foreach ($file in $recentFiles) {
     $report += "- $($file.Name) ($($file.LastWriteTime.ToString('yyyy-MM-dd')))"
 }
 
+$report += ""
+$report += "SÄKERHETSFYND"
+$report += "--------------"
+$report += "Antal IP-adresser funna: $($ipMatches.Count)"
+$report += "Antal loggfiler med ERROR/FAILED/DENIED: $($logFindings.Count)"
+$report += ""
+$report += "STÖRSTA LOGGFILER"
+$report += "-----------------"
+foreach ($log in $largestLogs) {
+    $sizeKB = [math]::Round($log.Length / 1KB, 2)
+    $report += "- $($log.Name): $sizeKB KB"
+}
 
-
-
-
-
-
+$report += ""
+$report += "FILTYPER OCH TOTAL STORLEK"
+$report += "---------------------------"
+foreach ($group in $fileGroups) {
+    $sizeKB = [math]::Round(($group.Group | Measure-Object Length -Sum).Sum / 1KB, 2)
+    $report += "$($group.Name): $($group.Count) filer, totalt $sizeKB KB"
+}
 
 $report += ""
 $report += "================================================================================"
 $report += "SLUT PÅ RAPPORT"
 $report += "================================================================================"
+
+$report | Out-File -FilePath $reportPath -Encoding UTF8
+Write-Host "Rapport skapad: $reportPath"
+Write-Host "CSV skapad: config_inventory.csv"

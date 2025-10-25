@@ -1,0 +1,65 @@
+================================================================================
+                    SÄKERHETSGRANSKNINGSRAPPORT - TechCorp AB
+================================================================================
+Genererad: 10/14/2024 00:00:00
+Granskad sökväg: C:\network_configs
+
+FILINVENTERING
+--------------
+Totalt antal filer: 25
+Konfigurationsfiler: 7
+Loggfiler: 5
+Backupfiler: 8
+
+Filer ändrade senaste 7 dagarna: 24
+- security_audit.ps1 (2025-10-26)
+- security_audit.txt (2025-10-26)
+- config_inventory.csv (2025-10-26)
+- SW-CORE-02.conf.bak (2025-10-16)
+- SW-CORE-01.conf.bak (2025-10-16)
+- RT-EDGE-02.conf.bak (2025-10-16)
+- RT-EDGE-01.conf.bak (2025-10-16)
+- baseline-router.conf (2025-10-16)
+- RT-EDGE-01.conf.bak (2025-10-16)
+- RT-LAGER-01.conf.bak (2025-10-16)
+- FW-DMZ-01.rules.bak (2025-10-16)
+- SW-CORE-01.conf.bak (2025-10-16)
+- access-2024-10-14.log (2024-10-14)
+- security-2024-10-14.log (2024-10-14)
+- system-2024-10-14.log (2024-10-14)
+- RT-EDGE-01.conf (2024-10-14)
+- SW-CORE-01.conf (2024-10-13)
+- security-2024-10-13.log (2024-10-13)
+- system-2024-10-13.log (2024-10-13)
+- FW-DMZ-01.rules (2024-10-12)
+- FW-DC-01.rules (2024-10-11)
+- RT-EDGE-02.conf (2024-10-10)
+- SW-CORE-02.conf (2024-10-09)
+- RT-LAGER-01.conf (2024-10-08)
+
+SÄKERHETSFYND
+--------------
+Antal IP-adresser funna: 15
+Antal loggfiler med ERROR/FAILED/DENIED: 5
+
+STÖRSTA LOGGFILER
+-----------------
+- security-2024-10-13.log: 1.34 KB
+- access-2024-10-14.log: 1.31 KB
+- system-2024-10-14.log: 1.27 KB
+- security-2024-10-14.log: 1.25 KB
+- system-2024-10-13.log: 1.06 KB
+
+FILTYPER OCH TOTAL STORLEK
+---------------------------
+.bak: 8 filer, totalt 0.34 KB
+.conf: 7 filer, totalt 4.21 KB
+.csv: 1 filer, totalt 1.64 KB
+.log: 5 filer, totalt 6.24 KB
+.ps1: 1 filer, totalt 3.71 KB
+.rules: 2 filer, totalt 1.89 KB
+.txt: 1 filer, totalt 1.88 KB
+
+================================================================================
+SLUT PÅ RAPPORT
+================================================================================
