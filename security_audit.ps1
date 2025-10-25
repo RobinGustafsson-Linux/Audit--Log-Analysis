@@ -34,6 +34,22 @@ $logFindings = Get-ChildItem -Filter "*.log" -Recurse |
 Select-String -Pattern "ERROR|FAILED|DENIED" |
 Group-Object Path
 
+# Generate CSV files with configurationsfiles
+$configInventory = @()
+foreach ($file in $configFiles + $ruleFiles) {
+    $hasBackup = Test-Path ($file.FullName + ".bak")
+    $configInventory += [PSCustomObject]@{
+        FileName     = $file.Name
+        FullPath     = $file.FullName
+        SizeKB       = [math]::Round($file.Length / 1KB, 2)
+        LastModified = $file.LastWriteTime.ToString("yyyy-MM-dd HH:mm:ss")
+        FileType     = ($file.Directory.Name)
+        HasBackup    = $hasBackup
+    }
+}
+$configInventory | Export-Csv -Path ".\config_inventory.csv" -NoTypeInformation -Encoding UTF8
+
+
 
 
 
@@ -67,4 +83,34 @@ $report = @()
 
 $report += "================================================================================"
 $report += "                    SÄKERHETSGRANSKNINGSRAPPORT - TechCorp AB"
+$report += "================================================================================"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+$report += ""
+$report += "================================================================================"
+$report += "SLUT PÅ RAPPORT"
 $report += "================================================================================"
