@@ -49,34 +49,6 @@ foreach ($file in $configFiles + $ruleFiles) {
 }
 $configInventory | Export-Csv -Path ".\config_inventory.csv" -NoTypeInformation -Encoding UTF8
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 # The report header
 $reportPath = ".\security_audit.txt"
 $report = @()
@@ -85,23 +57,20 @@ $report += "====================================================================
 $report += "                    SÄKERHETSGRANSKNINGSRAPPORT - TechCorp AB"
 $report += "================================================================================"
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+$report += "Genererad: $now"
+$report += "Granskad sökväg: $auditPath"
+$report += ""
+$report += "FILINVENTERING"
+$report += "--------------"
+$report += "Totalt antal filer: $($allFiles.Count)"
+$report += "Konfigurationsfiler: $($configFiles.Count)"
+$report += "Loggfiler: $($logFiles.Count)"
+$report += "Backupfiler: $($backupFiles.Count)"
+$report += ""
+$report += "Filer ändrade senaste 7 dagarna: $($recentFiles.Count)"
+foreach ($file in $recentFiles) {
+    $report += "- $($file.Name) ($($file.LastWriteTime.ToString('yyyy-MM-dd')))"
+}
 
 
 
